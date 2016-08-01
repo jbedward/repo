@@ -10,8 +10,8 @@ end
 default['freeswitch']['service'] = "freeswitch"
 
 default['freeswitch']['binpath']  = '/usr/bin'
-default['freeswitch']['confpath'] = '/etc/freeswitch'
-default['freeswitch']['homedir']  = '/var/lib/freeswitch'
+default['freeswitch']['confpath'] = '/usr/local/freeswitch'
+default['freeswitch']['homedir']  = '/usr/local/freeswitch'
 
 default['freeswitch']['domain'] = node['fqdn']
 default['freeswitch']['local_ip'] = node['ec2'] ? node['ec2']['public_ipv4'] : node['ipaddress']
@@ -55,4 +55,8 @@ default['freeswitch']['autoload_modules'] = %w[
   mod_spidermonkey
   mod_lua
   mod_say_en
+  mod_sms
+  mod_dialplan_xml
+  mod_event_socket
+  mod_xml_cdr
 ]

@@ -1,0 +1,7 @@
+name 'freeswitch_1_6'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures freeswitch_1_6'
+long_description 'Installs/Configures freeswitch_1_6'
+version '0.1.0'

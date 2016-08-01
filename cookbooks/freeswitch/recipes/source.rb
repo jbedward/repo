@@ -20,17 +20,17 @@ script "compile_freeswitch" do
   ./bootstrap.sh
   ./configure -C --prefix=/usr --localstatedir=/var \
     --sysconfdir=/etc/freeswitch \
-    --with-modinstdir=/usr/lib/freeswitch/mod \
+    --with-modinstdir=/usr/local/freeswitch/mod \
     --with-rundir=/var/run/freeswitch \
     --with-logfiledir=/var/log/freeswitch \
-    --with-dbdir=/var/lib/freeswitch/db \
-    --with-htdocsdir=/usr/share/freeswitch/htdocs \
-    --with-soundsdir=/usr/share/freeswitch/sounds \
-    --with-storagedir=/var/lib/freeswitch/storage \
-    --with-grammardir=/usr/share/freeswitch/grammar \
+    --with-dbdir=/usr/local/freeswitch/db \
+    --with-htdocsdir=/usr/local/freeswitch/htdocs \
+    --with-soundsdir=/usr/local/freeswitch/sounds \
+    --with-storagedir=/usr/local/freeswitch/storage \
+    --with-grammardir=/usr/local/freeswitch/grammar \
     --with-certsdir=/etc/freeswitch/tls \
-    --with-scriptdir=/usr/share/freeswitch/scripts \
-    --with-recordingsdir=/var/lib/freeswitch/recordings
+    --with-scriptdir=/usr/local/freeswitch/scripts \
+    --with-recordingsdir=/usr/local/freeswitch/recordings
   make clean
   make
   #{"make config-#{node['freeswitch']['source']['config_template']}" if node['freeswitch']['source']['config_template']}
@@ -58,11 +58,11 @@ execute "fs_homedir_ownership" do
 end
 
 %w{
-  /var/lib/freeswitch
-  /var/lib/freeswitch/db
-  /var/lib/freeswitch/recordings
-  /var/lib/freeswitch/storage
-  /var/log/freeswitch
+  /usr/local/freeswitch
+  /usr/local/freeswitch/db
+  /usr/local/freeswitch/recordings
+  /usr/local/freeswitch/storage
+  /usr/local/freeswitch
   /var/run/freeswitch
 }.each do |dir|
   directory dir do

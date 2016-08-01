@@ -7,3 +7,4 @@ node_name                "jbedward"
 client_key               "#{current_dir}/jbedward.pem"
 chef_server_url          "https://chef-server/organizations/invosys"
 cookbook_path            ["#{current_dir}/../cookbooks"]
+cookbook_license         "apachev2"
