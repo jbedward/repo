@@ -1,4 +1,4 @@
-default['freeswitch']['install_method'] = "package"
+default['freeswitch']['install_method'] = "source"
 
 default['freeswitch']['user'] = "freeswitch"
 default['freeswitch']['group'] = case node['platform']
