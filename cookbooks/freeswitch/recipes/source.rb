@@ -11,7 +11,7 @@ command "wget -O - https://files.freeswitch.org/repo/deb/debian/freeswitch_archi
 # because we're in a branch that will go through many rebases it's
 # better to set this one, or you'll get CONFLICTS when pulling (update)
         'git config --global pull.rebase true'
-
+end
 execute "git_clone" do
   command "git clone --depth 1 -b #{node['freeswitch']['source']['git_branch']} #{node['freeswitch']['source']['git_uri']} freeswitch"
   cwd "/usr/local/src"
