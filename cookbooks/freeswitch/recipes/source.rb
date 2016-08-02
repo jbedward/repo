@@ -1,6 +1,16 @@
-include_recipe 'apt'
+#include_recipe 'apt'
 
 node['freeswitch']['source']['dependencies'].each { |d| package d }
+
+execute "apt_update"
+command 'wget -O - https://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub | apt-key add -'&&
+	'echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.6/ jessie main" > /etc/apt/sources.list.d/freeswitch.list' &&
+        'apt-get update' &&
+        'apt-get install -y --force-yes freeswitch-video-deps-most' &&
+ 
+# because we're in a branch that will go through many rebases it's
+# better to set this one, or you'll get CONFLICTS when pulling (update)
+        'git config --global pull.rebase true'
 
 execute "git_clone" do
   command "git clone --depth 1 -b #{node['freeswitch']['source']['git_branch']} #{node['freeswitch']['source']['git_uri']} freeswitch"

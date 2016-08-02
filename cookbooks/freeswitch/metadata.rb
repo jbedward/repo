@@ -8,8 +8,8 @@ version          "1.0.0"
 
 recipe "freeswitch", "Install FreeSWITCH and configure"
 
-depends 'apt', '~> 2.2'
-depends 'yum', '~> 3.1'
+#depends 'apt', '~> 2.2'
+#depends 'yum', '~> 3.1'
 
 supports "debian", ">= 6.0"
 supports "ubuntu", ">= 12.04"
