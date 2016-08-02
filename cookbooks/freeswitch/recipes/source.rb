@@ -2,7 +2,7 @@
 
 node['freeswitch']['source']['dependencies'].each { |d| package d }
 
-execute "apt_update"
+execute "apt_update" do
 command "wget -O - https://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub | apt-key add -&&"
 	"echo "deb http://files.freeswitch.org/repo/deb/freeswitch-1.6/ jessie main" > /etc/apt/sources.list.d/freeswitch.list &&"
         "apt-get update &&"
