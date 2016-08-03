@@ -10,7 +10,7 @@ end
 default['freeswitch']['service'] = "freeswitch"
 
 default['freeswitch']['binpath']  = '/usr/bin'
-default['freeswitch']['confpath'] = '/usr/local/freeswitch'
+default['freeswitch']['confpath'] = '/usr/local/freeswitch/conf'
 default['freeswitch']['homedir']  = '/usr/local/freeswitch'
 
 default['freeswitch']['domain'] = node['fqdn']

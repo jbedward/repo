@@ -1,13 +1,9 @@
 #include_recipe 'apt'
 
-node['freeswitch']['source']['dependencies'].each { |d| package d }
+#node['freeswitch']['source']['dependencies'].each { |d| package d }
 
 execute "apt_update" do
-command "bash -c 'wget -O - https://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub | apt-key add - &&
-	echo 'deb http://files.freeswitch.org/repo/deb/freeswitch-1.6/ jessie main' > /etc/apt/sources.list.d/freeswitch.list &&
-        apt-get update &&
-        apt-get install -y --force-yes freeswitch-video-deps-most &&
-        git config --global pull.rebase true'"
+command "bash -c 'wget -O - https://files.freeswitch.org/repo/deb/debian/freeswitch_archive_g0.pub | apt-key add - && echo deb http://files.freeswitch.org/repo/deb/freeswitch-1.6/ jessie main > /etc/apt/sources.list.d/freeswitch.list && apt-get update && apt-get install -y --force-yes freeswitch-video-deps-most && git config --global pull.rebase true'"
 end
 execute "git_clone" do
   command "git clone --depth 1 -b #{node['freeswitch']['source']['git_branch']} #{node['freeswitch']['source']['git_uri']} freeswitch"
@@ -25,22 +21,10 @@ script "compile_freeswitch" do
   cwd "/usr/local/src/freeswitch"
   code <<-EOF
   ./bootstrap.sh
-  ./configure -C --prefix=/usr --localstatedir=/var \
-    --sysconfdir=/etc/freeswitch \
-    --with-modinstdir=/usr/local/freeswitch/mod \
-    --with-rundir=/var/run/freeswitch \
-    --with-logfiledir=/var/log/freeswitch \
-    --with-dbdir=/usr/local/freeswitch/db \
-    --with-htdocsdir=/usr/local/freeswitch/htdocs \
-    --with-soundsdir=/usr/local/freeswitch/sounds \
-    --with-storagedir=/usr/local/freeswitch/storage \
-    --with-grammardir=/usr/local/freeswitch/grammar \
-    --with-certsdir=/etc/freeswitch/tls \
-    --with-scriptdir=/usr/local/freeswitch/scripts \
-    --with-recordingsdir=/usr/local/freeswitch/recordings
+  ./configure 
   make clean
   make
-  #{"make config-#{node['freeswitch']['source']['config_template']}" if node['freeswitch']['source']['config_template']}
+ # #{"make config-#{node['freeswitch']['source']['config_template']}" if node['freeswitch']['source']['config_template']}
   make install
 EOF
   not_if "test -f #{node['freeswitch']['binpath']}/freeswitch"

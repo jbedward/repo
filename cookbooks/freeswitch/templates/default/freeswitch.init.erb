@@ -19,11 +19,11 @@ DAEMON=/usr/bin/freeswitch
 DAEMON_ARGS="-u <%= node['freeswitch']['user'] %> -g <%= node['freeswitch']['group'] %> -nc"
 USER=<%= node['freeswitch']['user'] %>
 GROUP=<%= node['freeswitch']['group'] %>
-CONFDIR=/etc/$NAME
+CONFDIR=/usr/local/$NAME
 RUNDIR=/var/run/$NAME
 PIDFILE=$RUNDIR/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
-WORKDIR=/var/lib/$NAME
+WORKDIR=/usr/local/$NAME
 
 [ -x $DAEMON ] || exit 0
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME

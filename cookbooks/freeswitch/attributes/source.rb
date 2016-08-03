@@ -1,59 +1,5 @@
 default['freeswitch']['source']['git_uri'] = "https://stash.freeswitch.org/scm/fs/freeswitch.git"
 default['freeswitch']['source']['git_branch'] = "v1.6"
-default['freeswitch']['source']['dependencies'] = case node['platform']
-when 'ubuntu', 'debian'
-  %w[
-    autoconf
-    automake
-    g++
-    git-core
-    libjpeg62-dev
-    libtool
-    make
-    libncurses5-dev
-    python-dev
-    gawk
-    pkg-config
-    gnutls-bin
-    libsqlite3-dev
-    bison
-    libasound2-dev
-    libcurl4-gnutls-dev
-    libpcre3-dev
-    libspeex-dev
-    libspeexdsp-dev
-    libreadline6-dev
-    libedit-dev
-    uuid-dev
-    zlib1g-dev
-    libssl-dev
-  ]
-when 'redhat', 'centos', 'fedora'
-  %w[
-    autoconf
-    automake
-    gcc-c++
-    git-core
-    libjpeg-devel
-    libtool
-    make
-    ncurses-devel
-    python-devel
-    gawk
-    pkgconfig
-    gnutls
-    sqlite-devel
-    bison
-    libcurl-devel
-    pcre-devel
-    speex-devel
-    readline-devel
-    libedit-devel
-    libuuid-devel
-    zlib-devel
-    openssl-devel
-  ]
-end
 
 default['freeswitch']['source']['modules'] = %w[
 loggers/mod_console
